@@ -207,6 +207,9 @@ README.html
 /integration/bazel/bazel-*
 *.log
 /node_modules/
+monitoreo-front/node_modules/
+monitoreo-front/.angular/
+monitoreo-front/package-lock.json
 
 # CircleCI temporary file for cache key computation.
 # See `save_month_to_file` in `.circleci/config.yml`.
@@ -259,3 +262,7 @@ baseline.json
 # Husky
 .husky/_
 aio/content/examples/.DS_Store
+
+
+
+
