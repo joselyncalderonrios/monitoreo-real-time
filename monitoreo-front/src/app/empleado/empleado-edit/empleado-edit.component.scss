@@ -1,0 +1,31 @@
+.form-title{
+  text-align: center;
+  //padding-left: 150px;
+  padding-top: 100px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: #365a89;
+}
+
+// .invalid-length {
+//   color: red;
+// }
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh; /* Ajusta la altura según tus necesidades */
+  margin-top: 2px; /* Ajusta el margen superior según tus necesidades */
+  padding-left: 500px;
+}
+
+
+.example-form {
+  // min-width: 150px;
+  // max-width: 500px;
+  // width: 100%;
+  padding-top: 25px;
+  
+
+}

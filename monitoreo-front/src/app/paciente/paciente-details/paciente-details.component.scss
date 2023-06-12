@@ -1,0 +1,43 @@
+table {
+  width: 100%;
+overflow-x: auto;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.table-responsive {
+  //display: block;
+  width:2000%;
+  //overflow-x: auto;
+ // -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.none-border .modal-footer {
+  border-top: none;
+}
+.btn-label {
+  display: inline-block;
+  margin: -6px 12px -6px -5px;
+  padding: 7px 15px;
+
+}
+.bg-color {
+  background-color: #60aff0cf;
+  /* Otros estilos adicionales si es necesario */
+}
+.col-1 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.color-page-button {
+  background: #60aff0cf !important;
+}

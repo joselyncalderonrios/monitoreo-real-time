@@ -1,0 +1,44 @@
+
+
+
+  <div class="wrapper" style="padding: 10px;">
+    <div class="row">
+      <div class="col-md-4">        
+        <div class="form-group">
+          <mat-form-field style="width: 300px;border: radius 10px ;padding-top: 15px;">
+          <mat-label>  Pacientes Monitoreados</mat-label>
+          <mat-select  required #nombres="ngModel" [(ngModel)]="valorseleccionado" name="nombres"  (selectionChange)="onSelectionChange($event)">
+            <mat-option *ngFor="let tc of lspacientesSiendoMonitoreados" [value]="tc.nombres + ' '+ tc.apellidoPaterno">
+              {{tc.nombres + ' '+ tc.apellidoPaterno}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-5">
+      <h1 style="text-align: center;color: #8f2525; fill: #a91a1c"> GRAFICA EN TIEMPO REAL DE NIVELES DE SpO2</h1>
+    <h2 style="text-align: center;color: #365a89; fill: #a91a1c;padding-left: 4px;padding-top: 5px;">
+      {{'MONITOREANDO A ' + valorLocalStorage | uppercase}}</h2>
+    </div>
+      </div>
+      <div class="row">
+
+    <ngx-charts-line-chart  [view]="view" style="fill: #365a89; padding: 10px;"
+    [scheme]="colorScheme"
+    [legend]="legend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxis]="true"
+    [yAxis]="true"
+    [autoScale]="true"
+      [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+     [results]="multiRT"
+     (select)="onSelect($event)"
+      (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)"
+    [timeline]="true"
+    ></ngx-charts-line-chart>
+  </div>
+  </div>
+

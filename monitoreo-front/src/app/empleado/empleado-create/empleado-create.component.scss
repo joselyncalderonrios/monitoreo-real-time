@@ -1,0 +1,47 @@
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.example-full-width {
+  width: 130%;
+}
+
+
+td {
+  padding-right: 100px;
+  //padding-top: 30px;
+}
+.centered-td {
+  text-align: center;
+  width: 50%;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh; /* Ajusta la altura según tus necesidades */
+  //margin-top: 2px; /* Ajusta el margen superior según tus necesidades */
+
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-title{
+  text-align: center;
+  padding-left: 150px;
+  padding-top: 100px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: #365a89;
+}
+.invalid-length {
+  color: red;
+}

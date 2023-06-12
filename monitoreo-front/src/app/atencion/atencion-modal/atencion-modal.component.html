@@ -1,0 +1,71 @@
+<form #f="ngForm" ngNativeValidate (ngSubmit)="guardarAtencion(f,1)" class="form-horizontal " id="loginform">
+ <div class="modal-header color-page-modal">
+    <div class="d-flex">
+      <h4 class="modal-title" style="text-transform: uppercase; font-weight: 500; color: #353ee9 !important; font-size: 19px;">
+        {{atencionDTO.idatencion==null?'Crear Atención':'Actualizar Estado de la Atención'}}</h4>
+    </div>
+    <div class="btn-group m-b-10 m-r-10 " role="group">
+    </div>
+  </div>
+    <div class="modal-body">
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <h5> Enfermera:<span class="text-danger">*</span></h5>
+          <select  [(ngModel)]="atencionDTO.idenfermera" name="tipoenf" class="form-control" >
+            <option *ngFor="let tc of lsTipoEnfermeras" [value]="tc.id" >
+                {{tc.nombres + ' '+ tc.apellidoPaterno}}
+              </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <h5> Doctor:<span class="text-danger">*</span></h5>
+          <select  [(ngModel)]="atencionDTO.iddoctor" name="tipodoc" class="form-control" >
+            <option *ngFor="let tc of lsTipoDoctores" [value]="tc.id">
+              {{tc.nombres + ' '+ tc.apellidoPaterno}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <h5>Estado:<span class="text-danger">*</span></h5>
+            <div class="controls">
+                <select class="form-control custom-select" required
+                    [(ngModel)]="atencionDTO.estado" name="estado" class="form-control">
+                    <option value="1">Habilitado</option>
+                    <option value="0">Inhabilitado</option>
+                </select>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning waves-effect waves-light btn-sm"
+        (click)="onCloseHandled()">
+        <span class="btn-label">
+            <i class="fa fa-close"></i>
+        </span>{{botones.btnCerrar}}
+    </button>
+    <button [disabled]="loadDelete" [hidden]="atencionDTO.idatencion==null?true:false" type="button"
+        (click)="guardarAtencion(f,0)" class="btn btn-danger waves-effect waves-light btn-sm"
+        data-dismiss="modal">
+        <span class="btn-label">
+            <i class="fa fa-trash"></i>
+        </span>
+        <span [hidden]="!loadDelete"><i class="fa fa-spin fa-spinner"></i></span>{{botones.btnEliminar}}
+    </button>
+    <button type="submit" [disabled]="f.form.invalid"
+        class="btn btn-info waves-effect waves-light btn-sm" data-dismiss="modal">
+        <span class="btn-label">
+            <i class="fa fa-save"></i>
+        </span>
+        <span [hidden]="!loadRegister"><i class="fa fa-spin fa-spinner"></i></span>
+        <a>{{atencionDTO.idatencion==null?botones.btnInsertar:botones.btnActualizar}}</a></button>
+</div>
+
+ </form>

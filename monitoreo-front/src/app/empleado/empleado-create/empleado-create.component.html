@@ -1,0 +1,60 @@
+<div class="form-container">
+  <h2 class="form-title">REGISTRARSE</h2>
+  <form #f="ngForm" class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombres completos</mat-label>
+      <input type="text" name="nombres"  maxlength="20" #nombres="ngModel" [(ngModel)]="empleado.nombres" required matInput placeholder="Ingresar nombres completos">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Apellido Paterno</mat-label>
+      <input type="text" name="apepat"  maxlength="20" #apepat="ngModel" [(ngModel)]="empleado.apellidoPaterno" style="width: 200px;" required matInput placeholder="Ingresar apellido paterno">
+    </mat-form-field>
+
+    <mat-form-field style=" width: 130%;">
+      <mat-label>Apellido Materno</mat-label>
+      <input type="text"  name="apemat"  maxlength="20" #apemat="ngModel" [(ngModel)]="empleado.apellidoMaterno" required matInput placeholder="Ingresar apellido materno">
+    </mat-form-field>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field style="width: 100%;">
+          <mat-label>DNI</mat-label>
+          <input type="text" name="dni" #dni maxlength="8" [(ngModel)]="empleado.dni" required matInput placeholder="Ingresar dni">
+          <mat-hint align="end">{{dni.value.length}} / 8</mat-hint>          
+        </mat-form-field>  
+        
+      </div>
+      <div class="col-md-6">
+        <mat-form-field style=" width: 164%;">
+          <mat-label>Cargo</mat-label>
+          <mat-select  [(ngModel)]="idTipoEmpleado" name="idTipoEmpleado"  >
+            <mat-option *ngFor="let tc of lsColumnaCargoEmpleado" [value]="tc.id">
+              {{tc.val}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario</mat-label>
+      <input type="text" name="user" maxlength="20" #user="ngModel" [(ngModel)]="empleado.user" required matInput placeholder="Ingresar usuario">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Contraseña</mat-label>
+      <input required  #password="ngModel" type="text" name="password" maxlength="20" [(ngModel)]="empleado.pass"  matInput placeholder="Ingresar contraseña">
+    </mat-form-field>
+    <div class="col-md-12" style="padding-left: 0px;">
+      <button  (click)="onSubmit()" mat-raised-button color="primary"
+        style="width: 650px;background-color: #365a89;"
+        >REGISTRAR
+      </button>
+    </div>
+    <div class="col-md-12" style="padding-top: 5px;">
+      <button  (click)="back()" mat-raised-button color="primary"
+        style="width: 650px;background-color: #365a89;"
+        >ATRÁS
+      </button>
+    </div>
+  </form>
+</div>
+

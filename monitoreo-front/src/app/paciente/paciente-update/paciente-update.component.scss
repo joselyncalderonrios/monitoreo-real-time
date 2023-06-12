@@ -1,0 +1,63 @@
+.modal-body {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 5px 15px 5px 15px!important;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-md-2 {
+  -ms-flex: 0 0 16.666667%;
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+}
+.form-group {
+  margin-top: 5px;
+  margin-bottom: 11px;
+  //margin-right: 100px;
+}
+
+
+
+.form-control {
+  color: #67757c;
+  min-height: 32px;
+  padding: 5px 5px 5px 5px!important;
+  display: initial;
+  font-size: 12px;
+}
+.form-control::after {
+  content: "Kg";
+  position: absolute;
+  top: 0;
+  right: 8px;
+  line-height: 32px;
+  pointer-events: none;
+}
+.modal-footer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 15px;
+  border-top: 1px solid #e9ecef;
+  background: rgba(120, 130, 140, 0.13);
+}
+.btn-label {
+  background: rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  margin: -6px 12px -6px -14px;
+  padding: 7px 15px;
+}
+
+.modal {
+  overflow: auto !important;
+}

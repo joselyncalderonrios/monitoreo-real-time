@@ -1,0 +1,48 @@
+table {
+  width: 100%;
+overflow-x: auto;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.table-responsive {
+  //display: block;
+  width:2000%;
+  //overflow-x: auto;
+ // -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+
+.mat-icon {
+  color: #679cec;
+  border: none;
+  outline: none;
+  //background-color: transparent;
+}
+.color-page-button {
+ // background: #679cec !important;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+// .transparent-button {
+//   background: transparent;
+//   border: none;
+//   padding: 0;
+// }
+
+// .transparent-button .material-icons {
+//   color: #679cec; /* Cambia <color> por el color deseado para el ícono */
+// }
+.disabled-icon {
+  opacity: 0.5; /* Cambia el valor según tu preferencia */
+  pointer-events: none;
+}

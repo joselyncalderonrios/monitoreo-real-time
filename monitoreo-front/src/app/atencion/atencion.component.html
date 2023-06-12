@@ -1,0 +1,97 @@
+<div >
+  <h1 style="text-align: center;color: #365a89; font-weight: bold;font-family: 'Times New Roman', Times, serif;">LISTA DE ATENCIONES</h1>
+</div>
+
+<div class="d-flex">
+  <div class="col-md-7">
+  <mat-form-field>
+    <mat-label>Buscar ......</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese la búsqueda" #input>
+  </mat-form-field>
+</div>
+  <div class="col-md-5" style="margin-top: 1%;">
+    <div class="d-flex justify-content-end">
+        <div style="font-size: 100px;">
+            <button (click)="nuevaAtencion()" class="color-page-button" mat-fab style="opacity: 0.9">
+              <mat-icon style="font-size: 25px;">person_add </mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- <mat-sidenav-content> -->
+  <div class="content mat-elevation-z8" style="width:109%;">
+
+      <table mat-table [dataSource]="sortedAtencion" matSort >
+
+          <ng-container matColumnDef="_idatencion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Id</th>
+              <td mat-cell *matCellDef="let element"> {{element.idatencion}} </td>
+          </ng-container>
+          <ng-container matColumnDef="enfermera">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Enfermera </th>
+            <td mat-cell *matCellDef="let element"> {{element.nomenf + element.apepatenf}} </td>
+        </ng-container>
+           <ng-container matColumnDef="doctor">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Doctor </th>
+              <td mat-cell *matCellDef="let element"> {{element.nomdoc + element.apepatdoc}} </td>
+          </ng-container>
+          <ng-container matColumnDef="idpaciente">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Id.Paciente </th>
+            <td mat-cell *matCellDef="let element"> {{element.idpaciente}} </td>
+        </ng-container>
+          <ng-container matColumnDef="paciente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Paciente </th>
+              <td mat-cell *matCellDef="let element"> {{element.nompac + element.apepapac}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dnipaciente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Dni </th>
+              <td mat-cell *matCellDef="let element"> {{element.dnipac}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nrohistoriapac">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Nro. historia </th>
+              <td mat-cell *matCellDef="let element"> {{element.nrohistoria}} </td>
+          </ng-container>
+          <ng-container matColumnDef="_FechaRegistro">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: normal; font-size: 15px; color: #538fe9;">Fecha Registro</th>
+            <td mat-cell *matCellDef="let element"> {{element.fecharegistro_format}} </td>
+        </ng-container>
+          <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: normal; font-size: 15px; color: #538fe9;"> Estado </th>
+              <td mat-cell *matCellDef="let element">
+                  <div style="background-color: #e0fbda!important; color: #40c057!important; border-color: #e0fbda; width: 70px; text-align: center; padding: 5px 0px; border-radius: 5px;">{{element.estado == 1 ? "Habilitado" : "Inhabilitado"}}</div>
+              </td>
+          </ng-container>
+
+           <ng-container matColumnDef="editar/eliminar">
+              <th mat-header-cell *matHeaderCellDef style="font-weight: normal; font-size: 15px; color: #538fe9;"> Editar/Eliminar </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon aria-hidden="true" (click)="onCellClickEdit(element)"  style="cursor: pointer; font-size: 28px;position: relative;left: 10px;  ">edit</mat-icon>
+               </td>
+          </ng-container>
+          <!-- <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef style="font-weight: normal; font-size: 15px; color: #538fe9;"> Eliminar </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-icon aria-hidden="true" (click)="ElimnarAtencion(f,0)" style="cursor: pointer; font-size: 28px;position: relative;left: 10px;  ">delete</mat-icon>
+             </td>
+        </ng-container> -->
+
+          <tr mat-header-row *matHeaderRowDef="AtencionColumns" class="color-page-tr" style="opacity: 0.9;"></tr>
+          <tr mat-row *matRowDef="let row; columns: AtencionColumns;"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay data disponible para el filtro"{{input.value}}"</td>
+          </tr>
+    </table>
+
+    <mat-paginator #paginator
+     [length]="totalRegistros"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="retornaAtenciones($event)"
+    showFirstLastButtons
+    aria-label="Selecciona pagina de atenciones">
+  </mat-paginator>
+    </div>

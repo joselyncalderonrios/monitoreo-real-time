@@ -1,0 +1,60 @@
+<!-- <mat-sidenav-container class="example-container" >
+  <mat-sidenav-content>
+
+
+  <form ngNativeValidate #f="ngForm" class="form-horizontal form-material" (ngSubmit)="ingresar(f)" >
+    <div class="col-md-6 offset-md-3" >
+    <div class="content mat-elevation-z8 justify-content-center" style="background-color: #a5abe6;">
+   <div class="login-form" >
+    <img  class="avatar logo mat-elevation-z8 mt-5"  src="data:image/png;base64,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" alt="">
+    <div class="mt-2">
+      <label for="usuario" class="mt-5 d-flex justify-content-center " style="height: 25px; font-size: 30px !important; border-radius: 5px; padding-left: 5px !important;color: #0D6EFD;
+      font-weight: bold;">
+Usuario
+      </label>
+      <input [ngModel]="usuario" name="usuario" class="form-control mt-2" placeholder="Ingrese su usuario" required>
+    </div>
+
+    <div class="mt-2">
+      <label for="password" class="mt-5 d-flex justify-content-center " style="height: 25px; font-size: 30px !important; border-radius: 5px; padding-left: 5px !important;color: #0D6EFD;
+      font-weight: bold;">
+Contraseña
+      </label>
+      <input [ngModel] name="password" type="password" class="form-control mt-2" placeholder="Ingrese su contraseña" required>
+    </div>
+
+<div class="col-md-30 d-flex justify-content-center mt-5 ">
+  <button class="btn btn-primary btn-lg btn-block text-uppercase " type="submit" style="width: 70%;">
+    Ingresar</button>
+</div>
+  </div>
+  </div>
+</div>
+</form>
+
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+<!-- <mat-sidenav-container class="example-container" >
+<mat-sidenav-content> -->
+<form class="login-form">
+  <h2 class="login-title" >INGRESAR</h2>
+  <mat-form-field  style="width: 350px;"  appearance="fill">
+    <mat-label>Usuario</mat-label>
+    <input matInput placeholder="Ingrese su usuario" [(ngModel)]="usuario" name="email" type="email" required>
+  </mat-form-field>
+
+  <mat-form-field style="width: 350px;" appearance="fill">
+    <mat-label>Contraseña</mat-label>
+    <input matInput placeholder="Ingrese su contraseña" [(ngModel)]="password" name="password" type="password" required>
+  </mat-form-field>
+
+  <button style="width: 350px;background-color: #365a89;" mat-raised-button color="primary" (click)="ingresar()">Iniciar sesión</button>
+  <div style="padding-top: 10px;" class="register-link">
+    ¿No tienes una cuenta? <a class="mat-button" [routerLink]="'/registro'">Registrarse</a>
+  </div>
+</form>
+<!-- </mat-sidenav-content>
+</mat-sidenav-container> -->

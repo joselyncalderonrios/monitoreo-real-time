@@ -1,0 +1,74 @@
+<form #f="ngForm" ngNativeValidate (ngSubmit)="guardarMonitoreo(f,1)" class="form-horizontal " id="loginform">
+
+  <div class="modal-header color-page-modal">
+    <div class="d-flex">
+      <h4 class="modal-title" style="text-transform: uppercase; font-weight: 500; color: #353ee9 !important; font-size: 19px;">
+        {{pacienteArduino.idpacientearduino==null?'Monitorear':'Actualizar Estado de la Atención'}}</h4>
+    </div>
+    <div class="btn-group m-b-10 m-r-10 " role="group">
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-md-5">
+          <div class="form-group">
+
+            <mat-label> Paciente:<span class="text-danger">*</span></mat-label>
+            <input matInput  [disabled]="true" style ="width: 200px;height: 50px;" type="text" name="nombres" maxlength="30"
+                          #nombres="ngModel" [(ngModel)]="pacienteDatos.nombres" class="form-control" aria-invalid="false">
+
+             </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="form-group">
+            <mat-form-field style="border: radius 10px ;padding-top: 15px;">
+            <mat-label> Arduino:<span class="text-danger">*</span></mat-label>
+            <mat-select  [(ngModel)]="idarduino" name="idarduino"  >
+              <mat-option *ngFor="let tc of lsArduinos" [value]="tc.idarduino">
+                {{tc.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+        </div>
+        <p> Arduino seleccionado: {{idarduino}} </p>
+        <!-- <mat-form-field>
+          <mat-label>Favorite food</mat-label>
+          <select [(ngModel)]="idarduino" name="food">
+            <option *ngFor="let tc of lsArduinos" [value]="tc.idarduino">
+              {{tc.nombre}}
+            </option>
+          </select>
+        </mat-form-field>
+        <p> Selected food: {{idarduino}} </p> -->
+
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-warning waves-effect waves-light btn-sm"
+          (click)="onCloseHandled()">
+          <span class="btn-label">
+              <i class="fa fa-close"></i>
+          </span>{{botones.btnCerrar}}
+      </button>
+      <!-- <button [disabled]="loadDelete" [hidden]="atencionDTO.idatencion==null?true:false" type="button"
+          (click)="guardarAtencion(f,0)" class="btn btn-danger waves-effect waves-light btn-sm"
+          data-dismiss="modal">
+          <span class="btn-label">
+              <i class="fa fa-trash"></i>
+          </span>
+          <span [hidden]="!loadDelete"><i class="fa fa-spin fa-spinner"></i></span>{{botones.btnEliminar}}
+      </button> -->
+      <button type="submit" [disabled]="f.form.invalid"
+          class="btn btn-info waves-effect waves-light btn-sm" data-dismiss="modal">
+          <span class="btn-label">
+              <i class="fa fa-save"></i>
+          </span>
+          <span [hidden]="!loadRegister"><i class="fa fa-spin fa-spinner"></i></span>
+          <a>{{pacienteArduino.idpacientearduino==null?botones.btnMonitorear:botones.btnActualizar}}</a></button>
+  </div>
+</form>
+
+
