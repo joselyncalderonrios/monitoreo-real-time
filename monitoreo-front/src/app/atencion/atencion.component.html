@@ -9,7 +9,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese la búsqueda" #input>
   </mat-form-field>
 </div>
-  <div class="col-md-5" style="margin-top: 1%;">
+  <!-- <div class="col-md-5" style="margin-top: 1%;">
     <div class="d-flex justify-content-end">
         <div style="font-size: 100px;">
             <button (click)="nuevaAtencion()" class="color-page-button" mat-fab style="opacity: 0.9">
@@ -17,11 +17,18 @@
             </button>
         </div>
     </div>
+</div> -->
+<div class="col-5" style="padding-left: 100px;margin-top: 1%;">
+  <mat-radio-group (change)="validar_estado($event)" [(ngModel)]="labelPosition">
+    <mat-radio-button class="example-margin" style="margin-right: 5%;font-size: 20px;" value=-1>Todos</mat-radio-button>
+    <mat-radio-button class="example-margin" style="margin-right: 5%;font-size: 20px;" value=1>Activos</mat-radio-button>
+    <mat-radio-button class="example-margin" style="font-size: 20px;" value=0>Inactivos</mat-radio-button>
+  </mat-radio-group>
 </div>
 </div>
 <!-- <mat-sidenav-content> -->
   <div class="content mat-elevation-z8" style="width:109%;">
-
+    <div class="table-responsive">
       <table mat-table [dataSource]="sortedAtencion" matSort >
 
           <ng-container matColumnDef="_idatencion">
@@ -95,3 +102,5 @@
     aria-label="Selecciona pagina de atenciones">
   </mat-paginator>
     </div>
+  </div>
+

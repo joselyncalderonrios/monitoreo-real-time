@@ -51,15 +51,15 @@ public class AtencionService {
 		
 	}
 	
-	public int retornaCantidadListAtencion() {	
-		int pg = atencionRepository.queryJoinAtencionPacEnfDocCantidad();		
+	public int retornaCantidadListAtencion(Integer Estadoes) {	
+		int pg = atencionRepository.queryJoinAtencionPacEnfDocCantidad(Estadoes);		
 		return pg;		
 	}
 	
 	//modifique
-	public List<queryJoinAtencionPacEnfDocDTO> getQueryJoinAtencionPacEnfDoc(Integer limit , Integer offset)
+	public List<queryJoinAtencionPacEnfDocDTO> getQueryJoinAtencionPacEnfDoc(Integer Estadoes,Integer limit , Integer offset)
 	{	
-		List<ArrayList<Object>> listDesdeBD = atencionRepository.queryJoinAtencionPacEnfDoc(limit,offset);
+		List<ArrayList<Object>> listDesdeBD = atencionRepository.queryJoinAtencionPacEnfDoc(Estadoes,limit,offset);
 		List<queryJoinAtencionPacEnfDocDTO> listAtencionPacEnfDocDTO = new ArrayList<>();
 		for (ArrayList<Object> obj : listDesdeBD) {
 			queryJoinAtencionPacEnfDocDTO objPacEnfDocDTO=new  queryJoinAtencionPacEnfDocDTO();

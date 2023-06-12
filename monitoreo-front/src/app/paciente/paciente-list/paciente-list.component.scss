@@ -13,10 +13,7 @@ td, th {
 }
 
 .table-responsive {
-  //display: block;
   width:2000%;
-  //overflow-x: auto;
- // -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 
@@ -24,24 +21,24 @@ td, th {
   color: #679cec;
   border: none;
   outline: none;
-  //background-color: transparent;
+
 }
+
 .color-page-button {
  // background: #679cec !important;
   background-color: transparent;
   border: none;
   outline: none;
+  opacity: 0.9;
+  border-radius: 80%;
+  box-shadow: 2px 1px 26px 0px rgba(21, 21, 22, 0.35);
+  width: 60px;
+  height: 60px;
 }
+  .color-page-button:hover {
+    background-color: #e0e9f6;
+  }
 
-// .transparent-button {
-//   background: transparent;
-//   border: none;
-//   padding: 0;
-// }
-
-// .transparent-button .material-icons {
-//   color: #679cec; /* Cambia <color> por el color deseado para el ícono */
-// }
 .disabled-icon {
   opacity: 0.5; /* Cambia el valor según tu preferencia */
   pointer-events: none;

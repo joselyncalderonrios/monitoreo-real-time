@@ -30,19 +30,38 @@ public interface AtencionRepository extends JpaRepository<Atencion, Long>{
 			, nativeQuery = true)
    List<ArrayList<Object>> listaConsulta();	
 	
-	@Query(value = "SELECT a.idatencion, a.fechahora,a.estado, "			
-			+ " a.idenfermera,e.nombres as nomenf, e.apellidopaterno as apepatenf, e.apellidomaterno as apematenf,   "
-			+ "a.iddoctor,em.nombres as nomdoc, em.apellidopaterno as apepatdoc, em.apellidomaterno as apematdoc,   "
-			+ "a.idpaciente,p.nrohistoria, p.nombres as nompac, p.apellidopaterno as apepapac, p.apellidomaterno as apemapac, p.dni as dnipac   "
-			+ " FROM atencion a     "
-			+ " JOIN empleado e ON e.idempleado = a.idenfermera   "
-			+ " JOIN empleado em ON em.idempleado = a.iddoctor    "
-			+ " JOIN paciente p ON p.idpaciente = a.idpaciente    "	
-			+ " order by a.fechahora asc , a.idatencion asc    "
-			+ " limit ?1 offset ?2"
-			, nativeQuery = true)
-	
-   List<ArrayList<Object>> queryJoinAtencionPacEnfDoc (Integer limit , Integer offset);
+//	@Query(value = "SELECT a.idatencion, a.fechahora,a.estado, "			
+//			+ " a.idenfermera,e.nombres as nomenf, e.apellidopaterno as apepatenf, e.apellidomaterno as apematenf,   "
+//			+ "a.iddoctor,em.nombres as nomdoc, em.apellidopaterno as apepatdoc, em.apellidomaterno as apematdoc,   "
+//			+ "a.idpaciente,p.nrohistoria, p.nombres as nompac, p.apellidopaterno as apepapac, p.apellidomaterno as apemapac, p.dni as dnipac   "
+//			+ " FROM atencion a     "
+//			+ " JOIN empleado e ON e.idempleado = a.idenfermera   "
+//			+ " JOIN empleado em ON em.idempleado = a.iddoctor    "
+//			+ " JOIN paciente p ON p.idpaciente = a.idpaciente    "	
+//			+ " order by a.fechahora asc , a.idatencion asc    "
+//			+ " limit ?1 offset ?2"
+//			, nativeQuery = true)
+//	
+//   List<ArrayList<Object>> queryJoinAtencionPacEnfDoc (Integer limit , Integer offset);
+	@Query(value = "SELECT a.idatencion, a.fechahora, a.estado, "
+			+ "a.idenfermera, e.nombres as nomenf, e.apellidopaterno as apepatenf, e.apellidomaterno as apematenf, "
+			+ "a.iddoctor, em.nombres as nomdoc, em.apellidopaterno as apepatdoc, em.apellidomaterno as apematdoc, "
+			+ "a.idpaciente, p.nrohistoria, p.nombres as nompac, p.apellidopaterno as apepapac, p.apellidomaterno as apemapac, p.dni as dnipac "
+			+ "FROM atencion a "
+			+ "JOIN empleado e ON e.idempleado = a.idenfermera "
+			+ "JOIN empleado em ON em.idempleado = a.iddoctor "
+			+ "JOIN paciente p ON p.idpaciente = a.idpaciente "
+			+ "WHERE "
+			+ "CASE "
+			+ "WHEN :estadoEs = 0 THEN a.estado = 0 "
+			+ "WHEN :estadoEs = 1 THEN a.estado = 1 "
+			+ "WHEN :estadoEs = -1 THEN a.estado IN (1,0) "
+			+ "END "
+			+ "ORDER BY a.fechahora ASC, a.idatencion ASC "
+			+ "LIMIT :limit OFFSET :offset", nativeQuery = true)
+List<ArrayList<Object>> queryJoinAtencionPacEnfDoc(@Param("estadoEs") Integer estadoEs, @Param("limit") Integer limit, @Param("offset") Integer offset);
+
+
 	 
 	@Query(value = 			
 			"SELECT COUNT(*) AS cantidad " 
@@ -53,11 +72,17 @@ public interface AtencionRepository extends JpaRepository<Atencion, Long>{
 			+ "	  JOIN empleado e ON e.idempleado = a.idenfermera "
 			+ "	  JOIN empleado em ON em.idempleado = a.iddoctor "
 			+ "	  JOIN paciente p ON p.idpaciente = a.idpaciente "
-			+ "		  ORDER BY a.fechahora ASC, a.idatencion ASC "
+			+ "WHERE "
+			+ "CASE "
+			+ "WHEN :estadoEs = 0 THEN a.estado = 0 "
+			+ "WHEN :estadoEs = 1 THEN a.estado = 1 "
+			+ "WHEN :estadoEs = -1 THEN a.estado IN (1,0) "
+			+ "END "
+			+ "		  ORDER BY a.fechahora ASC, a.idatencion ASC "			
 			+ "		) AS subconsulta "			
 			, nativeQuery = true)
 	
-   int queryJoinAtencionPacEnfDocCantidad();
+   int queryJoinAtencionPacEnfDocCantidad(@Param("estadoEs") Integer estadoEs);
 	
 	
 	
