@@ -22,7 +22,7 @@ export class ChartSectionRTComponent implements OnInit,OnDestroy{
   variableRegistro!: string;
   private subscription!: Subscription;
   valorseleccionado!:any;
-
+  SPO2:any;
   multiRT: any[] = [];
   view:[number,number] = [1300,500];
   private mqttComponent: MqttClientComponent = new MqttClientComponent(this._mqttService);
@@ -107,7 +107,9 @@ constructor(
     dataParse = data.split('-');
     //value
     const randomValue = parseInt(dataParse[1], 10);
-    const randomDate = dataParse[3];
+    this.SPO2=randomValue;
+    localStorage.setItem('SPO2',randomValue.toString());
+    const randomDate = dataParse[2];
     const newEntry: data = {
       name: randomDate,
       value: randomValue

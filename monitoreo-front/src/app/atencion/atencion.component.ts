@@ -29,7 +29,8 @@ export class AtencionComponent implements OnInit {
   pageSize: number = ITEM_PAGE;
   itemporpagina: any = ITEMS_PAGINATION;
   public updateFlagAtencion:UpdateFlagPacienteDTO= new UpdateFlagPacienteDTO();
-
+  valida_estado: any;
+  labelPosition: '-1' = '-1';
   AtencionColumns: string[] = [
     '_idatencion',
     'enfermera',
@@ -57,17 +58,18 @@ export class AtencionComponent implements OnInit {
     this.atencion.offset = 0
   }
   ngOnInit(): void {
+    this.valida_estado = -1;
     this.retornaAtenciones();
   }
+
   retornaAtenciones(event?: PageEvent) {
     this.retornaAtenciones$(event)
     .subscribe((pac:any) => this.retornaAtencionesResponse(pac));
   }
   retornaAtenciones$(event?: PageEvent){
-
-    this.pagination= new Pagination();
+    debugger
+    //this.pagination= new Pagination();
     this.atencion = new AtencionDTO();
-
     if (event!=null) {
         this.pageIndex = event.pageIndex;
         this.pageSize = event.pageSize;
@@ -78,11 +80,12 @@ export class AtencionComponent implements OnInit {
     //this.atencion.limit =  this.pageSize;
     //this.atencion.offset = this.pageIndex === 0 ? 0 : (this.pageIndex === 0 ? 1 : this.pageIndex) * this.pageSize;
 
-    this.pagination.limit=this.pageSize;
-    this.pagination.offset=this.pageIndex === 0 ? 0 : (this.pageIndex === 0 ? 1 : this.pageIndex) * this.pageSize;
+    this.atencion.limit=this.pageSize;
+    this.atencion.offset=this.pageIndex === 0 ? 0 : (this.pageIndex === 0 ? 1 : this.pageIndex) * this.pageSize;
+    this.atencion.estado = this.valida_estado;
     // this.pagination.limit=5;
     // this.pagination.offset=0;
-    return this._atencionService.cargaListaAtenciones(this.pagination);
+    return this._atencionService.cargaListaAtenciones(this.atencion);
   }
 
   retornaAtencionesResponse(atencion: any){
@@ -118,6 +121,16 @@ export class AtencionComponent implements OnInit {
         this.sortedAtencion = new MatTableDataSource<AtencionDTO>([]);
       }
       }
+    }
+    validar_estado(event:any) {
+      if (event == undefined || event.value == -1) {
+        this.valida_estado = -1;
+      } else if (event.value == 1) {
+        this.valida_estado = 1;
+      } else if (event.value == 0) {
+        this.valida_estado = 0;
+      }
+      this.retornaAtenciones(undefined);
     }
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;

@@ -80,14 +80,14 @@ public class AtencionREST {
 	private ResponseEntity<List<JoinPacienteMetricaDTO>> listarPacientesJoinMetricas (){		
 		return ResponseEntity.ok(atencionService.getAllPacienteJoinMetricas());
 	}
-	
+	//modifique
 	@PostMapping("/listpacjoinAtencion")
 	private ResponseEntity<List<queryJoinAtencionPacEnfDocDTO>> listarlistpacjoinAtencion 
-	(@RequestBody  Pagination pagination){	
+	(@RequestBody  queryJoinAtencionPacEnfDocDTO pagination){	
 		
 		//Pagination pg= new Pagination();
-		int pg = atencionService.retornaCantidadListAtencion();
-		List<queryJoinAtencionPacEnfDocDTO> ls=atencionService.getQueryJoinAtencionPacEnfDoc(pagination.getLimit(),pagination.getOffset());
+		int pg = atencionService.retornaCantidadListAtencion(pagination.getEstado());
+		List<queryJoinAtencionPacEnfDocDTO> ls=atencionService.getQueryJoinAtencionPacEnfDoc(pagination.getEstado(), pagination.getLimit(),pagination.getOffset());
 		if(ls!=null && ls.size()>0) {
 			ls.get(0).setCantidad(pg);
 		}
@@ -96,10 +96,10 @@ public class AtencionREST {
 	}
 	
 	@GetMapping("/cantidadList")
-	private ResponseEntity<Integer> cantidadLIST(){
+	private ResponseEntity<Integer> cantidadLIST(@RequestBody  queryJoinAtencionPacEnfDocDTO pagination){
 		//Pagination pg= new Pagination();
 		//pg = atencionService.retornaCantidadListAtencion();
-		return ResponseEntity.ok(atencionService.retornaCantidadListAtencion());
+		return ResponseEntity.ok(atencionService.retornaCantidadListAtencion(pagination.getEstado()));
 	}
 	
 	
